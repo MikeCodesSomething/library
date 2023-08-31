@@ -1,0 +1,84 @@
+/* * {
+    color: red;
+} */
+
+.container,
+.book-card {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.book-card,
+.summary-card {
+    border: 1px solid black;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-property {
+    text-align: center;
+}
+
+.overlay {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(53, 53, 53, 0.6);
+}
+
+.overlay.open {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-book-form {
+    width: 40vw;
+    height: 30vh;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.close-button {
+    align-self: end;
+    padding: 4px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.rating input{
+    display: none;
+}
+
+.rating input:checked ~ label:before {
+    content: '★';
+
+}
+
+.rating label {
+    display: block;
+    width: 30px;
+}
+
+.rating label:before {
+    content: '☆';
+    position: relative;
+    display: block;
+}

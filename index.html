@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="overlay" id="overlay">
+        <div class="menu">
+            <form class="add-book-form" action="">
+                <svg class="close-button" id="close-overlay-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V5H19V19M17,8.4L13.4,12L17,15.6L15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4Z" /></svg>
+                <label for="title">Title*</label>
+                <input id="title" type="text" required>
+                <label for="author">Author*</label>
+                <input id="author" type="text" required>
+                <label for="pages">Number of Pages</label>
+                <input id="pages" type="number">
+                <label for="read">Read?</label>
+                <input id="read" type="checkbox">
+                <label for="rating">Rating</label>
+                <div class="rating">
+                    <input type="radio" name="stars" id="5-star"><label for="5-star"></label>
+                    <input type="radio" name="stars" id="4-star"><label for="4-star"></label>
+                    <input type="radio" name="stars" id="3-star"><label for="3-star"></label>
+                    <input type="radio" name="stars" id="2-star"><label for="2-star"></label>
+                    <input type="radio" name="stars" id="1-star"><label for="1-star"></label>
+                </div>
+                <label for="add"></label>
+                <button id="add">Add Book</button>
+            </form>
+        </div>
+    </div>
+    <h1>Library</h1>
+    <div id="library-container" class="container">
+        <!-- Books added will go here -->
+        <div class="summary-card">
+            <div id="total-books" class="book-property">Total books:</div>
+            <button id="add-book-button" class="book-property">Add Book</button>
+        </div>
+    </div>
+    
+</body>
+</html>
