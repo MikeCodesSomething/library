@@ -7,6 +7,7 @@ function Book(title,author,numberOfPages,read,rating) {
   this.read = read;
   this.toggleRead = function() {
     this.read = !this.read;
+    displayLibrary(myLibrary);
   }
   this.rating = rating;
 }
@@ -64,11 +65,21 @@ function displayLibrary(myLibrary) {
         for (let key in currentBook) {
             populateBookCard(key, currentBook, bookCard)
         }
+        
+        //Add mark as read button
+        let toggleReadButton = document.createElement("button")
+        toggleReadButton.classList.add("toggle-read-button");
+        toggleReadButton.textContent = currentBook.read === true ? "Mark as Unread" : "Mark as Read"
+        bookCard.appendChild(toggleReadButton);
+        toggleReadButton.addEventListener('click', () => currentBook.toggleRead());
+
+        //Add remove book button
         let removeBookButton = document.createElement("button")
         removeBookButton.classList.add("remove-book-button");
         removeBookButton.textContent = "Remove Book"
         bookCard.appendChild(removeBookButton);
         removeBookButton.addEventListener('click', removeBook);
+        
     }
 }
 
@@ -151,14 +162,14 @@ addBookToLibrary("The Lion, The Witch and the Wardrobe","CS Lewis",208,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
- addBookToLibrary(1,1,1,1,1,1);
- addBookToLibrary(2,2,2,2,2,2);
- addBookToLibrary(3,3,3,3,3,3);
- addBookToLibrary(4,4,4,4,4,4);
- addBookToLibrary(5,5,5,5,5,5);
- addBookToLibrary(6,6,6,6,6,6);
- addBookToLibrary(7,7,7,7,7,7);
- addBookToLibrary(8,8,8,8,8,8);
+ addBookToLibrary(1,1,1,true,1,1);
+ addBookToLibrary(2,2,2,true,2,2);
+ addBookToLibrary(3,3,3,true,3,3);
+ addBookToLibrary(4,4,4,true,4,4);
+ addBookToLibrary(5,5,5,true,5,5);
+ addBookToLibrary(6,6,6,true,6,6);
+ addBookToLibrary(7,7,7,true,7,7);
+ addBookToLibrary(8,8,8,true,8,8);
 
 
 let addBookButton = document.getElementById("add-book-button");
