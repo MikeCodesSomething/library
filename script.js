@@ -100,9 +100,10 @@ function updateTotalBooks() {
 }
 
 function removeBooks() {
-    bookCards = document.getElementsByClassName("book-card");
-    for(card of bookCards) {
-        card.remove();
+    let bookCards = document.getElementsByClassName("book-card");
+    let numberOfCards = bookCards.length;
+    for(i = numberOfCards-1; i >= 0; i--) {
+        bookCards[i].remove();
     }
 }
 
@@ -115,18 +116,18 @@ function closeOverlay() {
 }
 
 // Example data
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
-addBookToLibrary(
-    "Harry Potter and the Philosophers Stone",
-    "JK Rowling",
-    400,
-    true,
-    3);
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
-addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+addBookToLibrary("The Lion, The Witch and the Wardrobe","CS Lewis",208,true,4);
+// addBookToLibrary(
+//     "Harry Potter and the Philosophers Stone",
+//     "JK Rowling",
+//     400,
+//     true,
+//     3);
+// addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+// addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+// addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+// addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+// addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
 
 
 let addBookButton = document.getElementById("add-book-button");
