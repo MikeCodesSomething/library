@@ -36,6 +36,7 @@ h1 {
 
 .summary-card {
     justify-content: center;
+    height: 200px;
 }
 
 .book-property {

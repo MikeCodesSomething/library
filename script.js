@@ -50,12 +50,13 @@ function addBookFromForm(e) {
 
 function displayLibrary(myLibrary) {
     updateTotalBooks();
-    removeBooks();
+    hideBooks();
     let libraryContainer = document.getElementById("library-container");
     for(let book in myLibrary) {
         let currentBook = myLibrary[book]
         let bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
+        bookCard.classList.add(book);
         libraryContainer.appendChild(bookCard);
         for (let key in currentBook) {
             // console.log(currentBook[key]);
@@ -90,6 +91,11 @@ function displayLibrary(myLibrary) {
             bookProperty.classList.add("book-property");
             bookCard.appendChild(bookProperty);
         }
+        let removeBookButton = document.createElement("button")
+        removeBookButton.classList.add("remove-book-button");
+        removeBookButton.textContent = "Remove Book"
+        bookCard.appendChild(removeBookButton);
+        removeBookButton.addEventListener('click', removeBook);
     }
 }
 
@@ -99,7 +105,17 @@ function updateTotalBooks() {
     totalBooksElement.textContent = `Total books: ${totalBooks}`;
 }
 
-function removeBooks() {
+function removeBook(e) {
+    //figure out which book to remove
+    bookToRemove = e.target.closest(".book-card");
+    //remove book from library
+    console.log(bookToRemove.classList[1]);
+    myLibrary.splice(bookToRemove, 1);
+    //reload display
+    displayLibrary(myLibrary);
+}
+
+function hideBooks() {
     let bookCards = document.getElementsByClassName("book-card");
     let numberOfCards = bookCards.length;
     for(i = numberOfCards-1; i >= 0; i--) {
