@@ -5,6 +5,9 @@ function Book(title,author,numberOfPages,read,rating) {
   this.author = author;
   this.numberOfPages = numberOfPages;
   this.read = read;
+  this.toggleRead = function() {
+    this.read = !this.read;
+  }
   this.rating = rating;
 }
 
@@ -59,43 +62,47 @@ function displayLibrary(myLibrary) {
         bookCard.classList.add(book);
         libraryContainer.appendChild(bookCard);
         for (let key in currentBook) {
-            // console.log(currentBook[key]);
-            let bookProperty = document.createElement("div");
-            if(key === 'author'){
-                bookProperty.textContent = `By ${currentBook[key]}`}
-            else if(key === 'numberOfPages') {
-                bookProperty.textContent = `${currentBook[key]} pages`}
-            else if(key === 'read') {
-                bookProperty.textContent =
-                currentBook[key] === true ? 'Read: Yes' : 'Read: No'
-            }
-            else if(key === 'rating') {
-                switch(currentBook[key]){
-                    case 5: bookProperty.textContent = "★★★★★";
-                    break;
-                    case 4: bookProperty.textContent = "★★★★☆";
-                    break;
-                    case 3: bookProperty.textContent = "★★★☆☆";
-                    break;
-                    case 2: bookProperty.textContent = "★★☆☆☆";
-                    break;
-                    case 1: bookProperty.textContent = "★☆☆☆☆";
-                    break;
-                    case 0: bookProperty.textContent = "☆☆☆☆☆";
-                    break;
-                    default: bookProperty.textContent = "Not rated"
-                }               
-            }
-            else bookProperty.textContent = currentBook[key]
-            
-            bookProperty.classList.add("book-property");
-            bookCard.appendChild(bookProperty);
+            populateBookCard(key, currentBook, bookCard)
         }
         let removeBookButton = document.createElement("button")
         removeBookButton.classList.add("remove-book-button");
         removeBookButton.textContent = "Remove Book"
         bookCard.appendChild(removeBookButton);
         removeBookButton.addEventListener('click', removeBook);
+    }
+}
+
+function populateBookCard(key, currentBook, bookCard) {
+    if (typeof currentBook[key] !== "function") {
+        let bookProperty = document.createElement("div");
+        if(key === 'author'){
+            bookProperty.textContent = `By ${currentBook[key]}`}
+        else if(key === 'numberOfPages') {
+            bookProperty.textContent = `${currentBook[key]} pages`}
+        else if(key === 'read') {
+            bookProperty.textContent =
+            currentBook[key] === true ? 'Read: Yes' : 'Read: No'
+        }
+        else if(key === 'rating') {
+            switch(currentBook[key]){
+                case 5: bookProperty.textContent = "★★★★★";
+                break;
+                case 4: bookProperty.textContent = "★★★★☆";
+                break;
+                case 3: bookProperty.textContent = "★★★☆☆";
+                break;
+                case 2: bookProperty.textContent = "★★☆☆☆";
+                break;
+                case 1: bookProperty.textContent = "★☆☆☆☆";
+                break;
+                case 0: bookProperty.textContent = "☆☆☆☆☆";
+                break;
+                default: bookProperty.textContent = "Not rated"
+            }               
+        }
+        else bookProperty.textContent = currentBook[key]        
+        bookProperty.classList.add("book-property");
+        bookCard.appendChild(bookProperty);
     }
 }
 
@@ -109,8 +116,8 @@ function removeBook(e) {
     //figure out which book to remove
     bookToRemove = e.target.closest(".book-card");
     //remove book from library
-    console.log(bookToRemove.classList[1]);
-    myLibrary.splice(bookToRemove, 1);
+    let indexToRemove = bookToRemove.classList[1];
+    myLibrary.splice(indexToRemove, 1);
     //reload display
     displayLibrary(myLibrary);
 }
@@ -144,6 +151,14 @@ addBookToLibrary("The Lion, The Witch and the Wardrobe","CS Lewis",208,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
 // addBookToLibrary("The Lion, The Witch, and the Wardrobe","CS Lewis",500,true,4);
+ addBookToLibrary(1,1,1,1,1,1);
+ addBookToLibrary(2,2,2,2,2,2);
+ addBookToLibrary(3,3,3,3,3,3);
+ addBookToLibrary(4,4,4,4,4,4);
+ addBookToLibrary(5,5,5,5,5,5);
+ addBookToLibrary(6,6,6,6,6,6);
+ addBookToLibrary(7,7,7,7,7,7);
+ addBookToLibrary(8,8,8,8,8,8);
 
 
 let addBookButton = document.getElementById("add-book-button");
