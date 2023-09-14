@@ -1,15 +1,18 @@
 const myLibrary = [];
 
-function Book(title,author,numberOfPages,read,rating) {
-  this.title = title;
-  this.author = author;
-  this.numberOfPages = numberOfPages;
-  this.read = read;
-  this.toggleRead = function() {
-    this.read = !this.read;
-    displayLibrary(myLibrary);
-  }
-  this.rating = rating;
+class Book {
+    constructor(title,author,numberOfPages,read,rating) {
+        this.title = title;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
+        this.read = read;
+        this.rating = rating;
+    }
+    toggleRead() {
+        this.read = !this.read;
+    }
+    
+
 }
 
 function addBookToLibrary(title,author,numberOfPages,read,rating) {
@@ -71,7 +74,10 @@ function displayLibrary(myLibrary) {
         toggleReadButton.classList.add("toggle-read-button");
         toggleReadButton.textContent = currentBook.read === true ? "Mark as Unread" : "Mark as Read"
         bookCard.appendChild(toggleReadButton);
-        toggleReadButton.addEventListener('click', () => currentBook.toggleRead());
+        toggleReadButton.addEventListener('click', () => {
+            currentBook.toggleRead();
+            displayLibrary(myLibrary);
+        });
 
         //Add remove book button
         let removeBookButton = document.createElement("button")
@@ -150,6 +156,7 @@ function closeOverlay() {
 }
 
 // Example data
+myLibrary.push(new Book("The Lion, The Witch and the Wardrobe","CS Lewis",208,true,4));
 addBookToLibrary("The Lion, The Witch and the Wardrobe","CS Lewis",208,true,4);
 // addBookToLibrary(
 //     "Harry Potter and the Philosophers Stone",
